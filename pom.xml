@@ -5,13 +5,178 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>halo</groupId>
     <artifactId>halo-query</artifactId>
+    <packaging>war</packaging>
     <version>2.19.4</version>
     <properties>
         <org.springframework.version>4.0.6.RELEASE</org.springframework.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <srdb.version>9.3.4</srdb.version>
+        <jetty.version>7.6.14.v20131031</jetty.version>
+        
+        <!-- main version setting -->
+		<spring.version>4.0.8.RELEASE</spring.version>
+		<validator.version>5.1.1.Final</validator.version>
+		<mybatis.version>3.2.8</mybatis.version>
+		<mybatis-spring.version>1.2.2</mybatis-spring.version>
+		<druid.version>1.0.11</druid.version>
+		<shiro.version>1.2.3</shiro.version>
+		<jedis.version>2.8.0</jedis.version>
+		<sitemesh.version>2.4.2</sitemesh.version>
+		
+		<!-- tools version setting -->
+		<slf4j.version>1.7.7</slf4j.version>
+		<logback.version>1.1.3</logback.version>
+		<log4jdbc.version>1.2</log4jdbc.version>
+		<hessian.version>4.0.33</hessian.version>
+		<quartz.version>2.2.1</quartz.version>
+		<commons-pool.version>1.6</commons-pool.version>
+		<commons-lang3.version>3.1</commons-lang3.version>
+		<commons-lang.version>2.5</commons-lang.version>
+		<commons-io.version>2.4</commons-io.version>
+		<commons-email.version>1.4</commons-email.version>
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<commons-beanutils.version>1.9.1</commons-beanutils.version>
+		<jackson.version>2.4.0</jackson.version>
+		<fastjson.version>1.1.40</fastjson.version>
+		<xstream.version>1.4.7</xstream.version>
+		<guava.version>17.0</guava.version>
+		<dozer.version>5.5.1</dozer.version>
+		<poi.version>3.9</poi.version>
+		<aspectj.version>1.7.4</aspectj.version>
+		<cglib.version>3.1</cglib.version>
+		<zxing.version>2.2</zxing.version>
+		<mail.version>1.4.7</mail.version>
+		<activation.version>1.1.1</activation.version>
+		<standard.version>1.1.2</standard.version>
+		<jstl.version>1.2</jstl.version>
+		<servlet-api.version>2.5</servlet-api.version>
+		<jsp-api.version>2.2</jsp-api.version>
+		<metadata-extractor.version>2.6.2</metadata-extractor.version>
+		<ckfinder.version>2.3</ckfinder.version>
+		<thumbnailator.version>0.4.2</thumbnailator.version>
+		<junit.version>4.9</junit.version>
+		<userAgentUtils.version>1.13</userAgentUtils.version>
+		<freemarker.version>2.3.20</freemarker.version>
+		<activemq-stomp.version>5.10.1</activemq-stomp.version>
+		<spring-jms.version>3.1.0.RELEASE</spring-jms.version>
+		
+		<!-- environment setting -->
+		<jdk.version>1.7</jdk.version>
+		<tomcat.version>2.2</tomcat.version>
+		<jetty.version>7.6.14.v20131031</jetty.version>
+		<webserver.port>8181</webserver.port>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.7</java.version>
+		<downloadSources>true</downloadSources>
+		
     </properties>
     <dependencies>
+    
+   	 <!-- jackson json -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		<!-- fastjson json -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency> 
+		
+    	<!-- srdb-driver -->
+		<dependency>
+			<groupId>com.srdb</groupId>
+			<artifactId>srdbsql-driver</artifactId>
+			<version>${srdb.version}</version>
+		</dependency>
+		<!-- jetty begin -->
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jsp-2.1-jetty</artifactId>
+			<version>6.1.24</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- WEB begin -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>${sitemesh.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>${standard.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jsp-api.version}</version>
+		</dependency>
+		<!-- WEB end -->
+
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-util</artifactId>
+			<version>6.1.26</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty</artifactId>
+			<version>6.1.26</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- jetty end -->
+		
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
@@ -128,6 +293,55 @@
     <build>
         <finalName>halo-query</finalName>
         <plugins>
+	       <!-- jetty插件 -->
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jetty.version}</version>
+				<configuration>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>${webserver.port}</port>
+						</connector>
+					</connectors>
+					<webAppConfig>
+						<contextPath>/${project.artifactId}</contextPath>
+					</webAppConfig>
+					<systemProperties>  
+						<systemProperty>
+							<name>org.mortbay.util.URI.charset</name>
+							<value>${project.build.sourceEncoding}</value>
+						</systemProperty>
+					</systemProperties>
+				</configuration>
+			</plugin>
+        	<!-- war 打包插件, 设定war包名称不带版本号 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<warSourceExcludes>
+						static/bootstrap/2.3.1/docs/**,
+						static/ckeditor/_samples/**,
+						static/ckeditor/_source/**,
+						static/ckfinder/_samples/**,
+						static/ckfinder/help/**,
+						static/compressor*/**,
+						static/jquery-jbox/2.3/docs/**,
+						static/jquery-jbox/2.3/Skins2/**,
+						static/jquery-validation/1.11.0/demo/**,
+						static/jquery-ztree/3.5.12/demo/**,
+						static/My97DatePicker/docs/**,
+						static/supcan/doc/**,
+						static/SuperSlide/demo/**,
+						static/treeTable/demo/**,
+						test/**
+					</warSourceExcludes>
+					<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
+					<warName>${project.finalName}</warName>
+				</configuration>
+			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

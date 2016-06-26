@@ -12,3 +12,17 @@
 
 ##1 [query操作方式](https://github.com/akwei/halo-query/blob/master/README_normal.md "query操作方式")
 
+####
+####################################################
+2016-6-27
+url of query from jsp page
+http://localhost:8181/halo-query/query/
+
+parameters of sql Use @ and # enclose. For exmaple
+select * from user where weight <> @87# or ( name like @chenwd# and age in (@chenwd1#,@chenwd2#,@chenwd3#) )
+
+
+
+ 
+
+
