@@ -32,6 +32,7 @@ function commitQuery(para){
 <input type="button" value="gl" onclick="commitQuery('gl')"/>
 <input type="button" value="tz" onclick="commitQuery('tz')"/>
 <input type="button" value="jk" onclick="commitQuery('jk')"/>
+<input type="button" value="test" onclick="commitQuery('mysql')"/>
 <table>
 	<tr>
 		<td></td>
@@ -43,7 +44,7 @@ function commitQuery(para){
 		<c:when  test="${fn:length(list) > 0 }">
 			<c:forEach items="${list }" var="item" varStatus="var">
 			<tr>
-				<td>${var.index }</td>
+				<td>${var.index + 1 }</td>
 				<c:forEach items="${item }" var="map">
 					<td>${map.value }</td>
 				</c:forEach>

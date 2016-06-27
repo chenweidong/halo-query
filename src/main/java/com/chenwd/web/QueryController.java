@@ -22,34 +22,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value="/")
 public class QueryController {
 	
-//	@Resource(name="glJdbcSupport")
-//	JdbcSupport glJdbcSupport;
-//	@Resource(name="jkJdbcSupport")
-//	JdbcSupport jkJdbcSupport;
-//	@Resource(name="tzJdbcSupport")
-//	JdbcSupport tzJdbcSupport;
+	@Resource(name="glJdbcSupport")
+	JdbcSupport glJdbcSupport;
+	@Resource(name="jkJdbcSupport")
+	JdbcSupport jkJdbcSupport;
+	@Resource(name="tzJdbcSupport")
+	JdbcSupport tzJdbcSupport;
 	
 	@Resource(name="mysqlJdbcSupport")
-	JdbcSupport glJdbcSupport;
+	JdbcSupport mysqlJdbcSupport;
 
 	@RequestMapping(value={"","/query","/query/{flag}"})
 	public String query(@PathVariable("flag")String flag,Model model,@ModelAttribute("sql")String sql) throws Exception{
 		try{
 			if(!hasContainsValid(sql)){
-//				if("tz".equals(flag)){
-				//			executeQuery(model, sql,tzJdbcSupport);
-				//		}else if("gl".equals(flag)){
-				//			executeQuery(model, sql,glJdbcSupport);
-				//		}else if("jk".equals(flag)){
-				//			executeQuery(model, sql,jkJdbcSupport);
-				//		}
-						
-						if("tz".equals(flag)){
-							executeQuery(model, sql,glJdbcSupport);
+				if("tz".equals(flag)){
+							executeQuery(model, sql,tzJdbcSupport);
 						}else if("gl".equals(flag)){
 							executeQuery(model, sql,glJdbcSupport);
 						}else if("jk".equals(flag)){
-							executeQuery(model, sql,glJdbcSupport);
+							executeQuery(model, sql,jkJdbcSupport);
+						}else if("mysql".equals(flag)){
+							executeQuery(model, sql,mysqlJdbcSupport);
 						}
 			}else{
 				model.addAttribute("message", "仅能执行查询操作");
