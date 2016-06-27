@@ -11,6 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,23 +34,27 @@ public class QueryController {
 	JdbcSupport mysqlJdbcSupport;
 
 	@RequestMapping(value={"","/query","/query/{flag}"})
-	public String query(@PathVariable("flag")String flag,Model model,@ModelAttribute("sql")String sql) throws Exception{
+	public String query(@PathVariable("flag")String flag,Model model,@ModelAttribute("sql")String sql,HttpServletRequest request) throws Exception{
 		try{
-			if(!hasContainsValid(sql)){
-				if("tz".equals(flag)){
-							executeQuery(model, sql,tzJdbcSupport);
-						}else if("gl".equals(flag)){
-							executeQuery(model, sql,glJdbcSupport);
-						}else if("jk".equals(flag)){
-							executeQuery(model, sql,jkJdbcSupport);
-						}else if("mysql".equals(flag)){
-							executeQuery(model, sql,mysqlJdbcSupport);
-						}
+			if("admin".equals(request.getRemoteUser())){
+				if(!hasContainsValid(sql)){
+					if("tz".equals(flag)){
+						executeQuery(model, sql,tzJdbcSupport);
+					}else if("gl".equals(flag)){
+						executeQuery(model, sql,glJdbcSupport);
+					}else if("jk".equals(flag)){
+						executeQuery(model, sql,jkJdbcSupport);
+					}else if("mysql".equals(flag)){
+						executeQuery(model, sql,mysqlJdbcSupport);
+					}
+				}else{
+					model.addAttribute("message", "仅能执行查询操作");
+				}
+				return "welcome";
 			}else{
-				model.addAttribute("message", "仅能执行查询操作");
+				return "nopermission";
 			}
 	
-			return "welcome";
 		}catch(Exception e){
 			e.printStackTrace();
 			throw e;
