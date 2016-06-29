@@ -104,12 +104,13 @@ public class QueryController {
 	
 	private boolean hasContainsValid(String sql){
 //		String sql = "seLEct DEletd Deleteupdate Call insert CallInseRt";//6个
-		int contains = contains(sql,"((D|d)(E|e)(L|l)(E|e)(T|t)(E|e))|((I|i)(N|n)(S|s)(E|e)(R|r)(T|t))|((U|u)(P|p)(D|d)(A|a)(T|t)(E|e))|((C|c)(A|a)(L|l)(L|l))");
+		int contains = contains(sql,"(((?i)drop)|((?i)create)|((?i)alter))||((D|d)(E|e)(L|l)(E|e)(T|t)(E|e))|((I|i)(N|n)(S|s)(E|e)(R|r)(T|t))|((U|u)(P|p)(D|d)(A|a)(T|t)(E|e))|((C|c)(A|a)(L|l)(L|l))");
 		if(contains > 0){
 			return true;
 		}else{
 			return false;
 		}
+		
 	}
 	
 	private int contains(String str, String reg) {
